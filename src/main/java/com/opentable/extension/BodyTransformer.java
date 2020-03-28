@@ -11,27 +11,19 @@ import com.google.gson.*;
 
 public class BodyTransformer extends ResponseTransformer {
 
-    String responsepayload;
     Map object = null;
     Gson gsonBuilder = new GsonBuilder().create();
-    //JsonObject resJson = new JsonObject();
-
+    JsonObject obj;
 
     @Override
     public Response transform(Request request, Response response, FileSource fileSource, Parameters parameters) {
 
     if (request.getAbsoluteUrl().split("\\?").length == 2) {
 
-        JsonObject statobj = new JsonObject();
-        statobj.addProperty("playImage", "https://fancode.com/skillup-uploads/prod-images/2019/08/live-button.png");
-        statobj.addProperty("playText", "Watch on FanCode");
-        statobj.addProperty("isVideoAvailable", false);
-
-       /* responsepayload = "{" +
-                "    \"playImage\": \"https://fancode.com/skillup-uploads/prod-images/2019/08/live-button.png\"," +
-                "    \"playText\": \"Watch on FanCode\",\n" +
-                "    \"isVideoAvailable\": false\n" +
-                "  }";*/
+        obj = new JsonObject();
+        obj.addProperty("playImage", "https://fancode.com/skillup-uploads/prod-images/2019/08/live-button.png");
+        obj.addProperty("playText", "Watch on FanCode");
+        obj.addProperty("isVideoAvailable", false);
 
         object = new HashMap();
         String absoluteUrl = request.getAbsoluteUrl();
@@ -40,8 +32,7 @@ public class BodyTransformer extends ResponseTransformer {
         String[] matchids = values[1].split(",") ;
         for(int i=0; i<matchids.length ; i++)
         {
-            //resJson.addProperty(matchids[i],statobj);
-            object.put(matchids[i],statobj );
+            object.put(matchids[i],obj);
         }
         }
 
