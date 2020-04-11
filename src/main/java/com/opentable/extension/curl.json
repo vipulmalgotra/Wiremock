@@ -1,0 +1,13 @@
+{
+	"request" : {
+		"urlPathPattern" : "/matches/stream/status.*",
+		"method" : "GET"
+	},
+	"response" : {
+		"status" : 200,
+		"transformers": ["book-return-date-transformer"],
+		"headers" : {
+			"Content-Type" : "application/json"
+		}
+	}
+}
